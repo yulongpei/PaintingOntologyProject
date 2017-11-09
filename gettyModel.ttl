@@ -1,0 +1,979 @@
+@prefix ex: <http://ex.usc.isi.edu/ontology/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rr: <http://www.w3.org/ns/r2rml#> .
+@prefix km-dev: <http://isi.edu/integration/karma/dev#> .
+
+_:node1buf49qubx1 a km-dev:R2RMLMapping ;
+	km-dev:sourceName "gettyFormatted.json" ;
+	km-dev:modelPublicationTime "1510188837835"^^xsd:long ;
+	km-dev:modelVersion "1.7" ;
+	km-dev:hasInputColumns "[[{\"columnName\":\"Place:\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Artist\"}],[{\"columnName\":\"Title\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Date\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Medium\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Culture:\"},{\"columnName\":\"values\"}],[{\"columnName\":\"url\"}],[{\"columnName\":\"Dimensions\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Painting Link\"}],[{\"columnName\":\"Credit Line:\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Artist\"},{\"columnName\":\"values\"}]]" ;
+	km-dev:hasOutputColumns "[[{\"columnName\":\"Place:\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Title\"},{\"columnName\":\"values\"}],[{\"columnName\":\"artistUri\"}],[{\"columnName\":\"Date\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Medium\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Culture:\"},{\"columnName\":\"values\"}],[{\"columnName\":\"url\"}],[{\"columnName\":\"Dimensions\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Painting Link\"}],[{\"columnName\":\"Credit Line:\"},{\"columnName\":\"values\"}],[{\"columnName\":\"Artist\"},{\"columnName\":\"values\"}]]" ;
+	km-dev:hasModelLabel "gettyFormatted.json" ;
+	km-dev:hasBaseURI "http://localhost:8080/source/" ;
+	km-dev:hasWorksheetHistory """[
+    {
+        \"commandName\": \"SubmitPythonTransformationCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Painting Link\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"newColumnName\",
+                \"type\": \"other\",
+                \"value\": \"artistUri\"
+            },
+            {
+                \"name\": \"transformationCode\",
+                \"type\": \"other\",
+                \"value\": \"x = getValue(\\\"Artist\\\");\\nx = x.strip()\\nx = re.sub('[^\\\\w ]', '', x)\\nx = re.sub('\\\\s+', '_', x)\\nreturn x.lower()\"
+            },
+            {
+                \"name\": \"errorDefaultValue\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"isJSONOutput\",
+                \"type\": \"other\",
+                \"value\": \"false\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Artist\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"artistUri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"Transformation\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Culture:\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingCulture\",
+                    \"DomainLabel\": \"ex:Painting1 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Culture:\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Culture:\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Date\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingDate\",
+                    \"DomainLabel\": \"ex:Painting1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Date\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Dimensions\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingDimensions\",
+                    \"DomainLabel\": \"ex:Painting1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Dimensions\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Dimensions\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Medium\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingMedium\",
+                    \"DomainLabel\": \"ex:Painting1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Medium\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Medium\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"Painting Link\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingUri\",
+                    \"DomainLabel\": \"ex:Painting1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Painting Link\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Painting Link\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Title\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingTitle\",
+                    \"DomainLabel\": \"ex:Painting1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Title\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Title\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"url\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingurl\",
+                    \"DomainLabel\": \"ex:Painting1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"url\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Place:\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingCountry\",
+                    \"DomainLabel\": \"ex:Painting1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Place:\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Place:\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Credit Line:\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Painting\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Painting1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/paintingCredit\",
+                    \"DomainLabel\": \"ex:Painting1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Credit Line:\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Credit Line:\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [
+                    {\"columnName\": \"Artist\"},
+                    {\"columnName\": \"values\"}
+                ]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Artist\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Artist1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/artistName\",
+                    \"DomainLabel\": \"ex:Artist1 (add)\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Artist\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"Artist\\\"},{\\\"columnName\\\":\\\"values\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    },
+    {
+        \"commandName\": \"SetSemanticTypeCommand\",
+        \"model\": \"new\",
+        \"inputParameters\": [
+            {
+                \"name\": \"hNodeId\",
+                \"type\": \"hNodeId\",
+                \"value\": [{\"columnName\": \"artistUri\"}]
+            },
+            {
+                \"name\": \"worksheetId\",
+                \"type\": \"worksheetId\",
+                \"value\": \"W\"
+            },
+            {
+                \"name\": \"selectionName\",
+                \"type\": \"other\",
+                \"value\": \"DEFAULT_TEST\"
+            },
+            {
+                \"name\": \"SemanticTypesArray\",
+                \"type\": \"other\",
+                \"value\": [{
+                    \"DomainUri\": \"http://ex.usc.isi.edu/ontology/Artist\",
+                    \"DomainId\": \"http://ex.usc.isi.edu/ontology/Artist1\",
+                    \"isPrimary\": true,
+                    \"isProvenance\": false,
+                    \"FullType\": \"http://ex.usc.isi.edu/ontology/artistUri\",
+                    \"DomainLabel\": \"ex:Artist1\"
+                }]
+            },
+            {
+                \"name\": \"trainAndShowUpdates\",
+                \"type\": \"other\",
+                \"value\": true
+            },
+            {
+                \"name\": \"rdfLiteralType\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"language\",
+                \"type\": \"other\",
+                \"value\": \"\"
+            },
+            {
+                \"name\": \"inputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"artistUri\\\"}]}]\"
+            },
+            {
+                \"name\": \"outputColumns\",
+                \"type\": \"hNodeIdList\",
+                \"value\": \"[{\\\"value\\\":[{\\\"columnName\\\":\\\"artistUri\\\"}]}]\"
+            }
+        ],
+        \"tags\": [\"SemanticType\"]
+    }
+]""" .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 a rr:TriplesMap .
+
+_:node1buf49qubx1 km-dev:hasTriplesMap km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx2 rr:tableName "gettyFormatted.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasLogicalTable _:node1buf49qubx2 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:logicalTable _:node1buf49qubx2 ;
+	rr:subjectMap _:node1buf49qubx3 .
+
+_:node1buf49qubx1 km-dev:hasSubjectMap _:node1buf49qubx3 .
+
+_:node1buf49qubx3 km-dev:isPartOfMapping _:node1buf49qubx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://ex.usc.isi.edu/ontology/Painting1" ;
+	rr:class ex:Painting ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "ex:Painting1" ;
+	a km-dev:steinerTreeRootNode .
+
+km-dev:PredicateObjectMap_738c2c31-2a97-4d17-a9f0-391d8163416d rr:predicate ex:paintingCountry .
+
+_:node1buf49qubx4 rr:column "[\"Place:\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx4 .
+
+km-dev:PredicateObjectMap_738c2c31-2a97-4d17-a9f0-391d8163416d rr:objectMap _:node1buf49qubx4 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_738c2c31-2a97-4d17-a9f0-391d8163416d .
+
+km-dev:PredicateObjectMap_738c2c31-2a97-4d17-a9f0-391d8163416d a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_738c2c31-2a97-4d17-a9f0-391d8163416d .
+
+km-dev:PredicateObjectMap_b49e4e65-e918-4360-bf8e-aa815eaa29b5 rr:predicate ex:paintingTitle .
+
+_:node1buf49qubx5 rr:column "[\"Title\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx5 .
+
+km-dev:PredicateObjectMap_b49e4e65-e918-4360-bf8e-aa815eaa29b5 rr:objectMap _:node1buf49qubx5 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_b49e4e65-e918-4360-bf8e-aa815eaa29b5 .
+
+km-dev:PredicateObjectMap_b49e4e65-e918-4360-bf8e-aa815eaa29b5 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_b49e4e65-e918-4360-bf8e-aa815eaa29b5 .
+
+km-dev:PredicateObjectMap_c574f218-8305-4270-b390-52091202e59b rr:predicate ex:paintingDate .
+
+_:node1buf49qubx6 rr:column "[\"Date\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx6 .
+
+km-dev:PredicateObjectMap_c574f218-8305-4270-b390-52091202e59b rr:objectMap _:node1buf49qubx6 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_c574f218-8305-4270-b390-52091202e59b .
+
+km-dev:PredicateObjectMap_c574f218-8305-4270-b390-52091202e59b a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c574f218-8305-4270-b390-52091202e59b .
+
+km-dev:PredicateObjectMap_6aadc31a-9458-4c7a-8622-9ec048888adc rr:predicate ex:paintingMedium .
+
+_:node1buf49qubx7 rr:column "[\"Medium\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx7 .
+
+km-dev:PredicateObjectMap_6aadc31a-9458-4c7a-8622-9ec048888adc rr:objectMap _:node1buf49qubx7 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_6aadc31a-9458-4c7a-8622-9ec048888adc .
+
+km-dev:PredicateObjectMap_6aadc31a-9458-4c7a-8622-9ec048888adc a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6aadc31a-9458-4c7a-8622-9ec048888adc .
+
+km-dev:PredicateObjectMap_d35f92e7-de63-46bb-a173-bd7e6d21a7cd rr:predicate ex:paintingCulture .
+
+_:node1buf49qubx8 rr:column "[\"Culture:\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx8 .
+
+km-dev:PredicateObjectMap_d35f92e7-de63-46bb-a173-bd7e6d21a7cd rr:objectMap _:node1buf49qubx8 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_d35f92e7-de63-46bb-a173-bd7e6d21a7cd .
+
+km-dev:PredicateObjectMap_d35f92e7-de63-46bb-a173-bd7e6d21a7cd a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_d35f92e7-de63-46bb-a173-bd7e6d21a7cd .
+
+km-dev:PredicateObjectMap_89f5d312-247f-4e29-8cf3-f25017400151 rr:predicate ex:paintingurl .
+
+_:node1buf49qubx9 rr:column "url" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx9 .
+
+km-dev:PredicateObjectMap_89f5d312-247f-4e29-8cf3-f25017400151 rr:objectMap _:node1buf49qubx9 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_89f5d312-247f-4e29-8cf3-f25017400151 .
+
+km-dev:PredicateObjectMap_89f5d312-247f-4e29-8cf3-f25017400151 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_89f5d312-247f-4e29-8cf3-f25017400151 .
+
+km-dev:PredicateObjectMap_189f6992-fe2b-4697-aa56-a82ce5ccadc8 rr:predicate ex:paintingDimensions .
+
+_:node1buf49qubx10 rr:column "[\"Dimensions\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx10 .
+
+km-dev:PredicateObjectMap_189f6992-fe2b-4697-aa56-a82ce5ccadc8 rr:objectMap _:node1buf49qubx10 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_189f6992-fe2b-4697-aa56-a82ce5ccadc8 .
+
+km-dev:PredicateObjectMap_189f6992-fe2b-4697-aa56-a82ce5ccadc8 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_189f6992-fe2b-4697-aa56-a82ce5ccadc8 .
+
+km-dev:PredicateObjectMap_c7cdbbb6-f3aa-4825-ad83-95b52b5c6c65 rr:predicate ex:paintingUri .
+
+_:node1buf49qubx11 rr:column "Painting Link" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx11 .
+
+km-dev:PredicateObjectMap_c7cdbbb6-f3aa-4825-ad83-95b52b5c6c65 rr:objectMap _:node1buf49qubx11 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_c7cdbbb6-f3aa-4825-ad83-95b52b5c6c65 .
+
+km-dev:PredicateObjectMap_c7cdbbb6-f3aa-4825-ad83-95b52b5c6c65 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_c7cdbbb6-f3aa-4825-ad83-95b52b5c6c65 .
+
+km-dev:PredicateObjectMap_9a5a42be-9296-4c5e-9fd8-05c01b640064 rr:predicate ex:paintingCredit .
+
+_:node1buf49qubx12 rr:column "[\"Credit Line:\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx12 .
+
+km-dev:PredicateObjectMap_9a5a42be-9296-4c5e-9fd8-05c01b640064 rr:objectMap _:node1buf49qubx12 .
+
+km-dev:TriplesMap_1a8e0c0e-4821-4fae-8d9c-bae72a705db5 rr:predicateObjectMap km-dev:PredicateObjectMap_9a5a42be-9296-4c5e-9fd8-05c01b640064 .
+
+km-dev:PredicateObjectMap_9a5a42be-9296-4c5e-9fd8-05c01b640064 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_9a5a42be-9296-4c5e-9fd8-05c01b640064 .
+
+km-dev:TriplesMap_c3a3ca34-5f6f-43a2-90a5-a7422215f7e5 a rr:TriplesMap .
+
+_:node1buf49qubx1 km-dev:hasTriplesMap km-dev:TriplesMap_c3a3ca34-5f6f-43a2-90a5-a7422215f7e5 .
+
+km-dev:TriplesMap_c3a3ca34-5f6f-43a2-90a5-a7422215f7e5 km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx13 rr:tableName "gettyFormatted.json" ;
+	a rr:LogicalTable ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasLogicalTable _:node1buf49qubx13 .
+
+km-dev:TriplesMap_c3a3ca34-5f6f-43a2-90a5-a7422215f7e5 rr:logicalTable _:node1buf49qubx13 ;
+	rr:subjectMap _:node1buf49qubx14 .
+
+_:node1buf49qubx1 km-dev:hasSubjectMap _:node1buf49qubx14 .
+
+_:node1buf49qubx14 km-dev:isPartOfMapping _:node1buf49qubx1 ;
+	a rr:SubjectMap ;
+	km-dev:alignmentNodeId "http://ex.usc.isi.edu/ontology/Artist1" ;
+	rr:class ex:Artist ;
+	rr:termType rr:BlankNode ;
+	km-dev:namePrefix "ex:Artist1" .
+
+km-dev:PredicateObjectMap_6665b8eb-6c55-41e2-95ab-61c844b79921 rr:predicate ex:artistName .
+
+_:node1buf49qubx15 rr:column "[\"Artist\",\"values\"]" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx15 .
+
+km-dev:PredicateObjectMap_6665b8eb-6c55-41e2-95ab-61c844b79921 rr:objectMap _:node1buf49qubx15 .
+
+km-dev:TriplesMap_c3a3ca34-5f6f-43a2-90a5-a7422215f7e5 rr:predicateObjectMap km-dev:PredicateObjectMap_6665b8eb-6c55-41e2-95ab-61c844b79921 .
+
+km-dev:PredicateObjectMap_6665b8eb-6c55-41e2-95ab-61c844b79921 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_6665b8eb-6c55-41e2-95ab-61c844b79921 .
+
+km-dev:PredicateObjectMap_7841a472-a685-40ca-a2db-f9c9939cba27 rr:predicate ex:artistUri .
+
+_:node1buf49qubx16 rr:column "artistUri" ;
+	a rr:ObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasObjectMap _:node1buf49qubx16 .
+
+km-dev:PredicateObjectMap_7841a472-a685-40ca-a2db-f9c9939cba27 rr:objectMap _:node1buf49qubx16 .
+
+km-dev:TriplesMap_c3a3ca34-5f6f-43a2-90a5-a7422215f7e5 rr:predicateObjectMap km-dev:PredicateObjectMap_7841a472-a685-40ca-a2db-f9c9939cba27 .
+
+km-dev:PredicateObjectMap_7841a472-a685-40ca-a2db-f9c9939cba27 a rr:PredicateObjectMap ;
+	km-dev:isPartOfMapping _:node1buf49qubx1 .
+
+_:node1buf49qubx1 km-dev:hasPredicateObjectMap km-dev:PredicateObjectMap_7841a472-a685-40ca-a2db-f9c9939cba27 .
