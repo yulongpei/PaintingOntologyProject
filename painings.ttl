@@ -1,0 +1,169 @@
+@prefix ex: <http://ex.usc.isi.edu/ontology/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<http://ex.usc.isi.edu/ontology/>  rdf:type owl:Ontology .
+
+#########################################################
+#
+# Classes
+#
+#########################################################
+ex:Painting rdf:type owl:Class;
+	rdfs:label "Painting"@en;
+	rdfs:comment """Painting"""
+	.
+
+ex:Artist rdf:type owl:Class;
+	rdfs:label "Artist"@en;
+	rdfs:comment """Artist"""
+	.
+
+ex:Museum rdf:type owl:Class;
+	rdfs:label "Museum"@en;
+	rdfs:comment """Museum"""
+	.
+
+#########################################################
+#
+# Data Properties
+#
+#########################################################
+ex:paintingUri rdf:type rdf:Property ;
+	rdfs:label "uri"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "Identifier."
+	.
+
+ex:paintingurl rdf:type rdf:Property ;
+	rdfs:label "url"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "URL." 
+	.
+
+ex:paintingTitle rdf:type rdf:Property ;
+	rdfs:label "title"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "painting title."
+	.
+
+ex:paintingDate rdf:type rdf:Property ;
+	rdfs:label "date"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "painting date."
+	.
+
+ex:paintingMedium rdf:type rdf:Property ;
+	rdfs:label "medium"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "painting medium."
+	.
+
+ex:paintingDimensions rdf:type rdf:Property ;
+	rdfs:label "dimensions"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "painting dimensions."
+	.
+
+ex:paintingCredit rdf:type rdf:Property ;
+	rdfs:label "credit"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "painting credit."
+	.
+
+ex:paintingImage rdf:type rdf:Property ;
+	rdfs:label "image"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "Image." 
+	.
+
+ex:paintingArtist rdf:type owl:ObjectProperty ;
+	rdfs:label "artist"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "painting artist."
+	.
+
+ex:paintingMuseum rdf:type owl:ObjectProperty ;
+	rdfs:label "museums"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "artist museums."
+	.
+
+################### Artist #################
+
+ex:artistUri rdf:type rdf:Property ;
+	rdfs:label "uri"@en ;
+	rdfs:domain ex:Artist;
+	rdfs:comment "artist uri."
+	.
+
+ex:artistName rdf:type rdf:Property ;
+	rdfs:label "name"@en ;
+	rdfs:domain ex:Artist;
+	rdfs:comment "artist name."
+	.
+
+ex:artistBirthDate rdf:type rdf:Property ;
+	rdfs:label "birth_date"@en ;
+	rdfs:domain ex:Artist;
+	rdfs:comment "artist birth date."
+	.
+
+ex:artistDeathDate rdf:type rdf:Property ;
+	rdfs:label "death_date"@en ;
+	rdfs:domain ex:Artist;
+	rdfs:comment "artist death date."
+	.
+
+ex:artistCountry rdf:type rdf:Property ;
+	rdfs:label "country"@en ;
+	rdfs:domain ex:Artist;
+	rdfs:comment "artist country."
+	.
+
+ex:artistPaintings rdf:type owl:ObjectProperty ;
+	rdfs:label "paintings"@en ;
+	rdfs:domain ex:Artist;
+	rdfs:comment "artist paintings."
+	.
+
+ex:artistMuseum rdf:type owl:ObjectProperty ;
+	rdfs:label "museums"@en ;
+	rdfs:domain ex:Artist;
+	rdfs:comment "artist museums."
+	.
+
+
+########## Museum ############
+
+ex:museumUri rdf:type rdf:Property ;
+	rdfs:label "uri"@en ;
+	rdfs:domain ex:Museum;
+	rdfs:comment "museum uri."
+	.
+
+ex:museumName rdf:type rdf:Property ;
+	rdfs:label "name"@en ;
+	rdfs:domain ex:Museum;
+	rdfs:comment "museum name."
+	.
+
+ex:museumLocation rdf:type rdf:Property ;
+	rdfs:label "location"@en ;
+	rdfs:domain ex:Museum;
+	rdfs:comment "museum location."
+	.
+
+ex:museumPaintings rdf:type owl:ObjectProperty ;
+	rdfs:label "paintings"@en ;
+	rdfs:domain ex:Museum;
+	rdfs:comment "museum paintings."
+	.
+
+ex:museumArtists rdf:type owl:ObjectProperty ;
+	rdfs:label "artists"@en ;
+	rdfs:domain ex:Museum;
+	rdfs:comment "museum artists."
+	.
+
