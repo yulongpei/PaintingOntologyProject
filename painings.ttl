@@ -78,6 +78,18 @@ ex:paintingImage rdf:type rdf:Property ;
 	rdfs:comment "Image." 
 	.
 
+ex:paintingCountry rdf:type rdf:Property ;
+	rdfs:label "country"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "Country where painting was created."
+	.
+
+ex:paintingCulture rdf:type rdf:Property ;
+	rdfs:label "culture"@en ;
+	rdfs:domain ex:Painting;
+	rdfs:comment "Painting culture."
+	.
+
 ex:paintingArtist rdf:type owl:ObjectProperty ;
 	rdfs:label "artist"@en ;
 	rdfs:domain ex:Painting;
@@ -89,6 +101,8 @@ ex:paintingMuseum rdf:type owl:ObjectProperty ;
 	rdfs:domain ex:Painting;
 	rdfs:comment "artist museums."
 	.
+
+
 
 ################### Artist #################
 
