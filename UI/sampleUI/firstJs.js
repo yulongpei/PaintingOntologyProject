@@ -19,18 +19,18 @@ http.createServer(function (req, res) {
     var util = require('util');
     var endpoint = 'http://localhost:8080/openrdf-sesame/repositories/art_works';
     var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
-        'SELECT ?p ?t\n' +
+        'SELECT ?artist_name ?painting_title\n' +
         'WHERE {\n' +
-        '    ?Artist ex:artistName  "Xie Zhiliu" .\n' +
-        '    ?Artist ex:artistPaintings ?p .\n' +
-        '    ?p ex:paintingTitle ?t .\n' +
+        '    ?Artist ex:artistName  ?artist_name .\n' +
+        '    ?Artist ex:artistPaintings ?painting .\n' +
+        '    ?painting ex:paintingTitle ?painting_title .\n' +
         '}';
     var client = new SparqlClient(endpoint);
     console.log("Query to " + endpoint);
     console.log("Query: " + query);
     client.query(query)
       .execute(function(error, results) {
-        process.stdout.write(JSON.stringify(results.results.bindings));
+        // process.stdout.write(JSON.stringify(results.results.bindings));
         res.end(JSON.stringify(results.results.bindings));
     });
 

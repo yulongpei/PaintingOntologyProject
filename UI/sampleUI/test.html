@@ -6,13 +6,40 @@
                 var ajaxurl = 'http://localhost:8585';
                 var data = "majid";
                 $.post(ajaxurl, data, function (response) {
-                    $("#area").val(response);
+                    mytable = "<table border=\"1\">\n";
+                    res = JSON.parse(response);
+                    header_created = false;
+                    for(i=0 ; i < res.length ; i++){
+                        $("#area").val(i);
+
+                        if(! header_created){
+                            mytable += '<tr>\n';
+                            for(var k in res[i]){
+                                mytable += '<th>';
+                                mytable += k;
+                                mytable += '</th>\n';
+                            }
+                            header_created = true;
+                            mytable += '</tr>\n';
+                        }
+                        mytable += '<tr>\n';
+                        for(var k in res[i]){
+                            mytable += '<td>';
+                            mytable += res[i][k]["value"];
+                            mytable += '</td>\n';
+                        }
+                        mytable += '</tr>\n';
+                    }
+                    mytable += "</table>\n";
+                    $("#here_table").append(mytable);
                 });
             });
         </script>
 
 <body>
-<td><textarea style="width:300px" id="area"><br /></td>
-this is a test
+
+<textarea id="area"></textarea>
+<div id="here_table">
+</div>
 </body>
 </html>
