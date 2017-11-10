@@ -25,8 +25,12 @@
                         mytable += '<tr>\n';
                         for(var k in res[i]){
                             mytable += '<td>';
-                            mytable += res[i][k]["value"];
-                            mytable += '</td>\n';
+                            if(k == "painting_image"){
+                                mytable += '<img src="' + res[i][k]["value"] + '" alt="Smiley face" height="100" width="100">';
+                            }else {
+                                mytable += res[i][k]["value"];
+                                mytable += '</td>\n';
+                            }
                         }
                         mytable += '</tr>\n';
                     }
