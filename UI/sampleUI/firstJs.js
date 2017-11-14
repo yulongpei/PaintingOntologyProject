@@ -18,22 +18,57 @@ http.createServer(function (req, res) {
     var SparqlClient = require('sparql-client');
     var util = require('util');
     var endpoint = 'http://localhost:8080/openrdf-sesame/repositories/art_works';
-    var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
-        'SELECT ?artist_name ?painting_title ?painting_image\n' +
-        'WHERE {\n' +
-        '    ?Artist ex:artistName  ?artist_name .\n' +
-        '    ?Artist ex:artistPaintings ?painting .\n' +
-        '    ?painting ex:paintingTitle ?painting_title .\n' +
-        '    ?painting ex:paintingImage ?painting_image .\n' +
-        '}\nLIMIT 30';
     var client = new SparqlClient(endpoint);
-    console.log("Query to " + endpoint);
-    console.log("Query: " + query);
-    client.query(query)
-      .execute(function(error, results) {
-        // process.stdout.write(JSON.stringify(results.results.bindings));
-        res.end(JSON.stringify(results.results.bindings));
-    });
+
+    var qData = {};
+    var body = "";
+    if(req.method === 'OPTIONS'){
+        console.log("in OPTIONS");
+        res.end();
+    }
+    if(req.method === 'GET'){
+        console.log("in GET");
+        res.end();
+    }
+    if(req.method === 'POST' ){
+        req.on('data', function(data){
+            body+=data;
+            console.log("body:" + body);
+        });
+        req.on('end', function(){
+            console.log("body: "+ body);
+            var tempEq = body.split("&");
+            for(var i=0;i<tempEq.length;i++)
+            {
+                var pair = tempEq[i].split("=");
+                qData[pair[0]] = [pair[1]];
+                console.log("pair:" +pair[0]);
+                console.log("pair: " +pair[1]);
+            }
+            var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
+                'SELECT ?artist_name ?painting_title ?painting_image\n' +
+                'WHERE {\n' +
+                '    ?Artist ex:artistName  ?artist_name .\n' +
+                '    ?Artist ex:artistPaintings ?painting .\n' +
+                '    ?painting ex:paintingTitle ?painting_title .\n' +
+                '    ?painting ex:paintingImage ?painting_image .\n' +
+                '    filter(regex(str(?artist_name),"'+ qData['artistName'] +'")) .\n' +
+                '}\nLIMIT 30';
+            console.log("Query to " + endpoint);
+            console.log("Query: " + query);
+            client.query(query)
+              .execute(function(error, results) {
+                // process.stdout.write(JSON.stringify(results.results.bindings));
+                res.end(JSON.stringify(results.results.bindings));
+            });
+        });
+        
+    }
+
+    
 
 
 }).listen(8585);
+
+
+
