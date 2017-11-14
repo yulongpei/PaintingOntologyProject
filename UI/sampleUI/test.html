@@ -1,7 +1,10 @@
+<!DOCTYPE html>
 <html>
-<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
-		<!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
-		<script type="text/javascript">
+    <head>
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
+        <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+        <script type="text/javascript">
+            /*
             $(document).ready(function(){
                 var ajaxurl = 'http://localhost:8585';
                 var data = "majid";
@@ -37,13 +40,124 @@
                     mytable += "</table>\n";
                     $("#here_table").append(mytable);
                 });
-            });
+            });*/
         </script>
+    </head>
+    <body>
+        <form onsubmit="sendQuery();return false;">
+            <textarea id="textArtistName"></textarea>
+                <input id="checkArtistName" type="checkbox">Artist Name<br>
+            <textarea id="textArtistBirth"></textarea>
+                <input id="checkArtistBirth" type="checkbox">Artist Birth-Year<br>
+            <textarea id="textArtistDeath"></textarea>
+                <input id="checkArtistDeath" type="checkbox">Artist Death-Year<br>
+            <textarea id="textArtistCountry"></textarea>
+                <input id="checkArtistCountry" type="checkbox">Artist country<br>
+            <textarea id="textPaintingYear"></textarea>
+                <input id="checkPaintingYear" type="checkbox">Painting Year<br>
+            <textarea id="textPaintingName"></textarea>
+                <input id="checkPaintingName" type="checkbox">Painting Name<br>
+            <br>
+            <input type="submit">
+        </form>
+        <div id="here_table">
+        </div>
+    </body>
+    <script>
+        function sendQuery()
+        {
+            //obtaining data
+            var data = {}
+            if($('#checkArtistName')[0].checked)
+            {
+                data['artistName'] = $('#textArtistName')[0].value
+            }
+            if($('#checkArtistBirth')[0].checked)
+            {
+                data['artistBirth'] = $('#textArtistBirth')[0].value
+            }
+            if($('#checkArtistDeath')[0].checked)
+            {
+                data['artistDeath'] = $('#textArtistDeath')[0].value
+            }
+            if($('#checkArtistCountry')[0].checked)
+            {
+                data['artistCountry'] = $('#textArtistCountry')[0].value
+            }
+            if($('#checkPaintingYear')[0].checked)
+            {
+                data['paintingYear'] = $('#textPaintingYear')[0].value
+            }
+            if($('#checkPaintingName')[0].checked)
+            {
+                data['paintingName'] = $('#textPaintingName')[0].value
+            }
 
-<body>
+            var ajaxurl = 'http://localhost:8585';
+            $.post(ajaxurl, data, function (response) {
+                /*
+                mytable = "<table border=\"1\">\n";
+                res = JSON.parse(response);
+                header_created = false;
+                for(i=0 ; i < res.length ; i++){
+                    $("#area").val(i);
 
-<textarea id="area"></textarea>
-<div id="here_table">
-</div>
-</body>
+                    if(! header_created){
+                        mytable += '<tr>\n';
+                        for(var k in res[i]){
+                            mytable += '<th>';
+                            mytable += k;
+                            mytable += '</th>\n';
+                        }
+                        header_created = true;
+                        mytable += '</tr>\n';
+                    }
+                    mytable += '<tr>\n';
+                    for(var k in res[i]){
+                        mytable += '<td>';
+                        if(k == "painting_image"){
+                            mytable += '<img src="' + res[i][k]["value"] + '" alt="Smiley face" height="100" width="100">';
+                        }else {
+                            mytable += res[i][k]["value"];
+                            mytable += '</td>\n';
+                        }
+                    }
+                    mytable += '</tr>\n';
+                }
+                mytable += "</table>\n";
+                $("#here_table").append(mytable);*/
+            });
+        }
+    </script>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
