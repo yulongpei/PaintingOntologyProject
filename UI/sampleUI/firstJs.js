@@ -32,7 +32,7 @@ http.createServer(function (req, res) {
     }
     if(req.method === 'POST' ){
         req.on('data', function(data){
-            body+=data;
+            body += data;
             console.log("body:" + body);
         });
         req.on('end', function(){
@@ -50,10 +50,39 @@ http.createServer(function (req, res) {
                 'WHERE {\n' +
                 '    ?Artist ex:artistName  ?artist_name .\n' +
                 '    ?Artist ex:artistPaintings ?painting .\n' +
+                '    ?Artist ex:artistBirthDate ?artist_birth .\n' +
+                '    ?Artist ex:artistDeathDate ?artist_death .\n' +
+                '    ?Artist ex:artistCountry ?artist_country .\n' +
                 '    ?painting ex:paintingTitle ?painting_title .\n' +
-                '    ?painting ex:paintingImage ?painting_image .\n' +
-                '    filter(regex(str(?artist_name),"'+ qData['artistName'] +'")) .\n' +
-                '}\nLIMIT 30';
+                '    ?painting ex:paintingDate ?painting_year .\n' +
+                '    ?painting ex:paintingImage ?painting_image .\n';
+            if(qData['artistName'] != undefined)
+            {
+                query += '    filter(regex(str(?artist_name),"'+ qData['artistName'] +'")) .\n';
+            }
+            if(qData['artistBirth'] != undefined)
+            {
+                query += '    filter(regex(str(?artist_birth),"'+ qData['artistBirth'] +'")) .\n';   
+            }
+            if(qData['artistDeath'] != undefined)
+            {
+                query += '    filter(regex(str(?artist_death),"'+ qData['artistDeath'] +'")) .\n';   
+            }
+            if(qData['artistCountry'] != undefined)
+            {
+                query += '    filter(regex(str(?artist_country),"'+ qData['artistCountry'] +'")) .\n';   
+            }
+            if(qData['paintingYear'] != undefined)
+            {
+                query += '    filter(regex(str(?painting_year),"'+ qData['paintingYear'] +'")) .\n';   
+            }
+            if(qData['paintingName'] != undefined)
+            {
+                query += '    filter(regex(str(?painting_title),"'+ qData['paintingName'] +'")) .\n';   
+            }
+                
+
+                query += '}\nLIMIT 30';
             console.log("Query to " + endpoint);
             console.log("Query: " + query);
             client.query(query)
@@ -64,10 +93,6 @@ http.createServer(function (req, res) {
         });
         
     }
-
-    
-
-
 }).listen(8585);
 
 

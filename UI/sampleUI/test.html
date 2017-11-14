@@ -100,8 +100,6 @@
                 res = JSON.parse(response);
                 header_created = false;
                 for(i=0 ; i < res.length ; i++){
-                    $("#area").val(i);
-
                     if(! header_created){
                         mytable += '<tr>\n';
                         for(var k in res[i]){
@@ -125,7 +123,8 @@
                     mytable += '</tr>\n';
                 }
                 mytable += "</table>\n";
-                $("#here_table").append(mytable);
+                $('#here_table').html(mytable);
+                //$("#here_table").append(mytable);
             });
         }
     </script>
