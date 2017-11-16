@@ -57,6 +57,8 @@
                 <input id="checkPaintingYear" type="checkbox">Painting Year<br>
             <textarea id="textPaintingName"></textarea>
                 <input id="checkPaintingName" type="checkbox">Painting Name<br>
+            <textarea id="textPaintingMedium"></textarea>
+                <input id="checkPaintingMedium" type="checkbox">Painting Medium<br>
             <br>
             <input type="submit">
         </form>
@@ -91,6 +93,10 @@
             if($('#checkPaintingName')[0].checked)
             {
                 data['paintingName'] = $('#textPaintingName')[0].value
+            }
+            if($('#checkPaintingMedium')[0].checked)
+            {
+                data['paintingMedium'] = $('#textPaintingMedium')[0].value
             }
 
             var ajaxurl = 'http://localhost:8585';

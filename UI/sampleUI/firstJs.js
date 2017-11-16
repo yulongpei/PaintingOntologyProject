@@ -46,19 +46,22 @@ http.createServer(function (req, res) {
                 console.log("pair: " +pair[1]);
             }
             var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
-                'SELECT ?artist_name ?painting_title ?painting_image\n' +
+                'SELECT ?artist_name ?painting_title ?painting_image ?museum_name\n' +
                 'WHERE {\n' +
                 '    ?Artist ex:artistName  ?artist_name .\n' +
+                '    ?Artist ex:artistMuseum  ?museum .\n' +
                 '    ?Artist ex:artistPaintings ?painting .\n' +
                 '    ?Artist ex:artistBirthDate ?artist_birth .\n' +
                 '    ?Artist ex:artistDeathDate ?artist_death .\n' +
                 '    ?Artist ex:artistCountry ?artist_country .\n' +
                 '    ?painting ex:paintingTitle ?painting_title .\n' +
                 '    ?painting ex:paintingDate ?painting_year .\n' +
-                '    ?painting ex:paintingImage ?painting_image .\n';
+                '    ?painting ex:paintingMedium ?painting_medium .\n' +
+                '    ?painting ex:paintingImage ?painting_image .\n' +
+                '    ?museum ex:museumName ?museum_name .\n' ;
             if(qData['artistName'] != undefined)
             {
-                query += '    filter(regex(str(?artist_name),"'+ qData['artistName'] +'")) .\n';
+                query += '    filter(regex(lcase(str(?artist_name)),"'+ qData['artistName'] +'")) .\n';
             }
             if(qData['artistBirth'] != undefined)
             {
@@ -70,7 +73,7 @@ http.createServer(function (req, res) {
             }
             if(qData['artistCountry'] != undefined)
             {
-                query += '    filter(regex(str(?artist_country),"'+ qData['artistCountry'] +'")) .\n';   
+                query += '    filter(regex(lcase(str(?artist_country)),"'+ qData['artistCountry'] +'")) .\n';   
             }
             if(qData['paintingYear'] != undefined)
             {
@@ -78,7 +81,11 @@ http.createServer(function (req, res) {
             }
             if(qData['paintingName'] != undefined)
             {
-                query += '    filter(regex(str(?painting_title),"'+ qData['paintingName'] +'")) .\n';   
+                query += '    filter(regex(lcase(str(?painting_title)),"'+ qData['paintingName'] +'")) .\n';   
+            }
+            if(qData['paintingMedium'] != undefined)
+            {
+                query += '    filter(regex(lcase(str(?painting_medium)),"'+ qData['paintingMedium'] +'")) .\n';
             }
                 
 
