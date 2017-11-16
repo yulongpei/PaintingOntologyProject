@@ -1,47 +1,8 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="test.css" media="screen" />
     <head>
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
-        <!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
-        <script type="text/javascript">
-            /*
-            $(document).ready(function(){
-                var ajaxurl = 'http://localhost:8585';
-                var data = "majid";
-                $.post(ajaxurl, data, function (response) {
-                    mytable = "<table border=\"1\">\n";
-                    res = JSON.parse(response);
-                    header_created = false;
-                    for(i=0 ; i < res.length ; i++){
-                        $("#area").val(i);
-
-                        if(! header_created){
-                            mytable += '<tr>\n';
-                            for(var k in res[i]){
-                                mytable += '<th>';
-                                mytable += k;
-                                mytable += '</th>\n';
-                            }
-                            header_created = true;
-                            mytable += '</tr>\n';
-                        }
-                        mytable += '<tr>\n';
-                        for(var k in res[i]){
-                            mytable += '<td>';
-                            if(k == "painting_image"){
-                                mytable += '<img src="' + res[i][k]["value"] + '" alt="Smiley face" height="100" width="100">';
-                            }else {
-                                mytable += res[i][k]["value"];
-                                mytable += '</td>\n';
-                            }
-                        }
-                        mytable += '</tr>\n';
-                    }
-                    mytable += "</table>\n";
-                    $("#here_table").append(mytable);
-                });
-            });*/
-        </script>
     </head>
     <body>
         <form onsubmit="sendQuery();return false;">
@@ -64,12 +25,64 @@
         </form>
         <div id="here_table">
         </div>
+    <div id="paintingPage" class="modalDialog">
+        <div>
+            <a href="#close" title="Close" class="close">X</a>
+            <div id="paintingPageContent">
+
+            </div>
+        </div>
+    </div>
     </body>
     <script>
+        function loadPopup(data){
+            var ajaxurl = 'http://localhost:8585';
+
+            $.post(ajaxurl, data, function (response) {
+                var content = '';
+                res = JSON.parse(response);
+                mytable = "<table border=\"1\">\n";
+                for(i=0 ; i < res.length ; i++) {
+                    mytable += '<tr>\n';
+                    for (var k in res[i]) {
+
+                        mytable += '<td>'+res[i][k]["value"]+'</td>\n';
+
+                    }
+                    mytable += '</tr>\n';
+                }
+                mytable += "</table>\n";
+                content += mytable;
+                $("#paintingPageContent").html(content);
+
+            });
+        }
+        function getArtistInfo(artist) {
+            var data = {};
+            data['type'] = 'artist';
+            data['artistURI'] = artist;
+            loadPopup(data);
+            return false;
+        }
+        function getPaintingInfo(painting) {
+            var data = {};
+            data['type'] = 'painting';
+            data['paintingURI'] = painting;
+            loadPopup(data);
+            return false;
+        }
+        function getMuseumInfo(museum) {
+            var data = {};
+            data['type'] = 'museum';
+            data['museumURI'] = museum;
+            loadPopup(data);
+            return false;
+        }
         function sendQuery()
         {
             //obtaining data
-            var data = {}
+            var data = {};
+            data['type'] = 'general';
             if($('#checkArtistName')[0].checked)
             {
                 data['artistName'] = $('#textArtistName')[0].value
@@ -101,31 +114,52 @@
 
             var ajaxurl = 'http://localhost:8585';
             $.post(ajaxurl, data, function (response) {
-                
+
                 mytable = "<table border=\"1\">\n";
                 res = JSON.parse(response);
                 header_created = false;
-                for(i=0 ; i < res.length ; i++){
+                for(var i=0 ; i < res.length ; i++){
+                    var headers = ['Artist', 'artist_name', 'painting_title', 'painting_image', 'museum_name'];
                     if(! header_created){
                         mytable += '<tr>\n';
-                        for(var k in res[i]){
+                        headers.forEach(function(k, index, array){
                             mytable += '<th>';
                             mytable += k;
                             mytable += '</th>\n';
-                        }
+                        });
                         header_created = true;
                         mytable += '</tr>\n';
                     }
                     mytable += '<tr>\n';
-                    for(var k in res[i]){
+                    headers.forEach(function(kk, index, array){
                         mytable += '<td>';
-                        if(k == "painting_image"){
-                            mytable += '<img src="' + res[i][k]["value"] + '" alt="Smiley face" height="100" width="100">';
-                        }else {
-                            mytable += res[i][k]["value"];
+                        if(kk == "painting_image"){
+                            mytable += '<img src="' + res[i][kk]["value"] + '" alt="Smiley face" height="100" width="100">';
                             mytable += '</td>\n';
                         }
-                    }
+                        else if(kk == "artist_name"){
+                            mytable += '<a href="#paintingPage" onclick="getArtistInfo(\''+
+                                res[i]['Artist']["value"]+'\')">'+
+                                res[i][kk]["value"]+'</a>';
+                            mytable += '</td>\n';
+                        }
+                        else if(kk == "Artist"){
+                            mytable += res[i]['Artist']["value"];
+                            mytable += '</td>\n';
+                        }
+                        else if(kk == "painting_title"){
+                            mytable += '<a href="#paintingPage" onclick="getPaintingInfo(\''+
+                                res[i]['painting']["value"]+'\')">'+
+                                res[i][kk]["value"]+'</a>';
+                            mytable += '</td>\n';
+                        }
+                        else if(kk == "museum_name"){
+                            mytable += '<a href="#paintingPage" onclick="getPaintingInfo(\''+
+                                res[i]['museum']["value"]+'\')">'+
+                                res[i][kk]["value"]+'</a>';
+                            mytable += '</td>\n';
+                        }
+                    });
                     mytable += '</tr>\n';
                 }
                 mytable += "</table>\n";
