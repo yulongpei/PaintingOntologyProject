@@ -2,6 +2,7 @@
 <html>
 <link rel="stylesheet" type="text/css" href="test.css" media="screen" />
     <head>
+        <meta charset="UTF-8">
         <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.5.1.min.js"></script>
     </head>
     <body>
@@ -20,9 +21,16 @@
                 <input class="checkbx" id="checkPaintingName" type="checkbox">Painting Name<br>
             <textarea id="textPaintingMedium"></textarea>
                 <input class="checkbx" id="checkPaintingMedium" type="checkbox">Painting Medium<br>
+            <textarea id="textArtistRangeStart"></textarea> ~ 
+            <textarea id="textArtistRangeEnd"></textarea>
+                <input class="checkbx" id="checkArtistRange" type="checkbox">Artist Date Range<br>
+            <textarea id="textPaintingRangeStart"></textarea> ~ 
+            <textarea id="textPaintingRangeEnd"></textarea>
+                <input class="checkbx" id="checkPaintingRange" type="checkbox">Painting Date Range<br>
             <br>
             <input type="submit" id="submitBut">
         </form>
+        <br>
         <div id="here_table">
         </div>
     <div id="paintingPage" class="modalDialog">
@@ -85,31 +93,53 @@
             data['type'] = 'general';
             if($('#checkArtistName')[0].checked)
             {
-                data['artistName'] = $('#textArtistName')[0].value
+                data['artistName'] = $('#textArtistName')[0].value.trim()
             }
             if($('#checkArtistBirth')[0].checked)
             {
-                data['artistBirth'] = $('#textArtistBirth')[0].value
+                data['artistBirth'] = $('#textArtistBirth')[0].value.trim()
             }
             if($('#checkArtistDeath')[0].checked)
             {
-                data['artistDeath'] = $('#textArtistDeath')[0].value
+                data['artistDeath'] = $('#textArtistDeath')[0].value.trim()
             }
             if($('#checkArtistCountry')[0].checked)
             {
-                data['artistCountry'] = $('#textArtistCountry')[0].value
+                data['artistCountry'] = $('#textArtistCountry')[0].value.trim()
             }
             if($('#checkPaintingYear')[0].checked)
             {
-                data['paintingYear'] = $('#textPaintingYear')[0].value
+                data['paintingYear'] = $('#textPaintingYear')[0].value.trim()
             }
             if($('#checkPaintingName')[0].checked)
             {
-                data['paintingName'] = $('#textPaintingName')[0].value
+                data['paintingName'] = $('#textPaintingName')[0].value.trim()
             }
             if($('#checkPaintingMedium')[0].checked)
             {
-                data['paintingMedium'] = $('#textPaintingMedium')[0].value
+                data['paintingMedium'] = $('#textPaintingMedium')[0].value.trim()
+            }
+            if($('#checkArtistRange')[0].checked)
+            {
+                if($('#textArtistRangeStart')[0].value.trim() != "")
+                {
+                    data['artistRangeStart'] = $('#textArtistRangeStart')[0].value .trim()   
+                }
+                if($('#textArtistRangeEnd')[0].value.trim() != "")
+                {
+                    data['artistRangeEnd'] = $('#textArtistRangeEnd')[0].value.trim()
+                }
+            }
+            if($('#checkPaintingRange')[0].checked)
+            {
+                if($('#textPaintingRangeStart')[0].value.trim() != "")
+                {
+                    data['paintingRangeStart'] = $('#textPaintingRangeStart')[0].value.trim()
+                }
+                if($('#textPaintingRangeEnd')[0].value.trim() != "")
+                {
+                    data['paintingRangeEnd'] = $('#textPaintingRangeEnd')[0].value.trim()
+                }
             }
 
             var ajaxurl = 'http://localhost:8585';

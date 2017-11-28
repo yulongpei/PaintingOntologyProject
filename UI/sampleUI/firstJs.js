@@ -80,6 +80,18 @@ http.createServer(function (req, res) {
                 if (qData['paintingMedium'] != undefined) {
                     query += '    filter(regex(lcase(str(?painting_medium)),"' + qData['paintingMedium'] + '")) .\n';
                 }
+                if (qData['artistRangeStart'] != undefined) {
+                    query += '    filter(xsd:integer(?artist_birth) >=' + qData['artistRangeStart'] + ') .\n';
+                }
+                if (qData['artistRangeEnd'] != undefined) {
+                    query += '    filter(xsd:integer(?artist_birth) <=' + qData['artistRangeEnd'] + ') .\n';
+                }
+                if (qData['paintingRangeStart'] != undefined) {
+                    query += '    filter(xsd:integer(?painting_year) >=' + qData['paintingRangeStart'] + ') .\n';
+                }
+                if (qData['paintingRangeEnd'] != undefined) {
+                    query += '    filter(xsd:integer(?painting_year) <=' + qData['paintingRangeEnd'] + ') .\n';
+                }
                 query += '} limit 200';
             }else if(qData['type'] == 'artist'){
                 if (qData['artistURI'] != undefined) {
