@@ -99,7 +99,7 @@ http.createServer(function (req, res) {
                     var uri = decodeURIComponent(qData['artistURI']);
                     console.log("after: " + uri);
                     var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
-                                'SELECT ?property ?object\n' +
+                                'SELECT DISTINCT ?property ?object\n' +
                                 'WHERE {\n' +
                                 '    <'+uri+'> ?property  ?object .\n' +
                                 '}';
@@ -107,14 +107,14 @@ http.createServer(function (req, res) {
             }else if(qData['type'] == 'painting'){
                 var uri = decodeURIComponent(qData['paintingURI']);
                 var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
-                            'SELECT ?property ?object\n' +
+                            'SELECT DISTINCT ?property ?object\n' +
                             'WHERE {\n' +
                             '    <'+uri+'> ?property  ?object .\n' +
                             '}';
             }else if(qData['type'] == 'museum'){
                 var uri = decodeURIComponent(qData['museumURI']);
                 var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
-                            'SELECT ?property ?object\n' +
+                            'SELECT DISTINCT ?property ?object\n' +
                             'WHERE {\n' +
                             '    <'+uri+'> ?property  ?object .\n' +
                             '}';

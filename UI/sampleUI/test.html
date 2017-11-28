@@ -49,13 +49,26 @@
             $.post(ajaxurl, data, function (response) {
                 var content = '';
                 res = JSON.parse(response);
-                mytable = "<table border=\"1\">\n";
+                mytable = "<table border=\"1\" style=\"width:100%; table-layout: fixed;\">\n";
+                console.log(String(res));
                 for(i=0 ; i < res.length ; i++) {
                     mytable += '<tr>\n';
+                    var toshow = true;
                     for (var k in res[i]) {
-
-                        mytable += '<td>'+res[i][k]["value"]+'</td>\n';
-
+                        console.log(String(k));
+                        console.log(String(res[i][k]["value"]));
+                        console.log("------------");
+                        if(k === "property"){
+                            if(res[i][k]["value"].includes("ontology")) {
+                                temp = res[i][k]["value"].replace("http://ex.usc.isi.edu/ontology/", "");
+                                mytable += '<th>' + temp + '</th>\n';
+                                toshow = true;
+                            }else{
+                                toshow = false;
+                            }
+                        }else if(toshow){
+                            mytable += '<td>' + res[i][k]["value"] + '</td>\n';
+                        }
                     }
                     mytable += '</tr>\n';
                 }
@@ -85,6 +98,10 @@
             data['museumURI'] = museum;
             loadPopup(data);
             return false;
+        }
+        function showLargeImage(imageUrl) {
+            var content = "<img style=\"max-width:100%;max-height:500px;\" src=\"" + imageUrl + "\">" ;
+            $("#paintingPageContent").html(content);
         }
         function sendQuery()
         {
@@ -164,7 +181,11 @@
                     headers.forEach(function(kk, index, array){
                         mytable += '<td>';
                         if(kk == "painting_image"){
-                            mytable += '<img src="' + res[i][kk]["value"] + '" alt="Smiley face" height="100" width="100">';
+                            mytable += '<a href="#paintingPage" onclick="showLargeImage(\''+
+                                res[i][kk]["value"] +
+                                '\')">' +
+                                '<img src="' + res[i][kk]["value"] + '" alt="Smiley face" height="100" width="100">' +
+                                '</a>';
                             mytable += '</td>\n';
                         }
                         else if(kk == "artist_name"){
@@ -184,7 +205,7 @@
                             mytable += '</td>\n';
                         }
                         else if(kk == "museum_name"){
-                            mytable += '<a href="#paintingPage" onclick="getPaintingInfo(\''+
+                            mytable += '<a href="#paintingPage" onclick="getMuseumInfo(\''+
                                 res[i]['museum']["value"]+'\')">'+
                                 res[i][kk]["value"]+'</a>';
                             mytable += '</td>\n';

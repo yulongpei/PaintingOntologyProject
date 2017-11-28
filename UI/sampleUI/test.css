@@ -22,7 +22,8 @@
 
 .modalDialog > div {
 	resize: both;
-	width: 400px;
+	width: 70%;
+	height:70%;
 	position: relative;
 	margin: 10% auto;
 	padding: 5px 20px 13px 20px;
@@ -31,6 +32,7 @@
 	background: -moz-linear-gradient(#fff, #999);
 	background: -webkit-linear-gradient(#fff, #999);
 	background: -o-linear-gradient(#fff, #999);
+	overflow:auto;
 }
 
 .close {
@@ -50,9 +52,10 @@
 	-moz-box-shadow: 1px 1px 3px #000;
 	-webkit-box-shadow: 1px 1px 3px #000;
 	box-shadow: 1px 1px 3px #000;
+	margin: 10px;
 }
 
-.close:hover { background: #00d9ff; }
+.close:hover { margin: 10px;background: #00d9ff; }
 
 #submitBut {
 	width: 100px;
