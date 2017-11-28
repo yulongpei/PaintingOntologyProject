@@ -47,14 +47,13 @@ http.createServer(function (req, res) {
             }
             if(qData['type'] == 'general') {
                 var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
-                    'SELECT ?Artist ?painting ?museum ?artist_name ?painting_title ?painting_image ?museum_name\n' +
+                    'SELECT DISTINCT ?Artist ?painting ?museum ?artist_name ?painting_title ?painting_image ?museum_name\n' +
                     'WHERE {\n' +
                     '    ?Artist ex:artistName  ?artist_name .\n' +
                     '    ?Artist ex:artistMuseum  ?museum .\n' +
                     '    ?Artist ex:artistPaintings ?painting .\n' +
                     '    ?Artist ex:artistBirthDate ?artist_birth .\n' +
                     '    ?Artist ex:artistDeathDate ?artist_death .\n' +
-                    '    ?Artist ex:artistCountry ?artist_country .\n' +
                     '    ?painting ex:paintingTitle ?painting_title .\n' +
                     '    ?painting ex:paintingDate ?painting_year .\n' +
                     '    ?painting ex:paintingMedium ?painting_medium .\n' +
@@ -81,7 +80,7 @@ http.createServer(function (req, res) {
                 if (qData['paintingMedium'] != undefined) {
                     query += '    filter(regex(lcase(str(?painting_medium)),"' + qData['paintingMedium'] + '")) .\n';
                 }
-                query += '}';
+                query += '} limit 200';
             }else if(qData['type'] == 'artist'){
                 if (qData['artistURI'] != undefined) {
                     console.log("before: " + qData['artistURI']);

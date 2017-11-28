@@ -53,3 +53,18 @@
 }
 
 .close:hover { background: #00d9ff; }
+
+#submitBut {
+	width: 100px;
+	height: 50px;
+	margin-left: 100px;
+}
+
+.checkbx{
+	width:25px;
+	height:25px;
+}
+
+form {
+	margin-left: 35%;
+}
