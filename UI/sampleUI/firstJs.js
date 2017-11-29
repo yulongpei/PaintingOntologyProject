@@ -47,7 +47,7 @@ http.createServer(function (req, res) {
             }
             if(qData['type'] == 'general') {
                 var query = 'prefix ex: <http://ex.usc.isi.edu/ontology/>\n' +
-                    'SELECT DISTINCT ?Artist ?painting ?museum ?artist_name ?painting_title ?painting_image ?museum_name\n' +
+                    'SELECT DISTINCT ?Artist ?painting ?museum ?artist_name ?painting_title ?painting_image ?gallery_name\n' +
                     'WHERE {\n' +
                     '    ?Artist ex:artistName  ?artist_name .\n' +
                     '    ?Artist ex:artistMuseum  ?museum .\n' +
@@ -59,7 +59,7 @@ http.createServer(function (req, res) {
                     '    ?painting ex:paintingMedium ?painting_medium .\n' +
                     '    ?painting ex:paintingImage ?painting_image .\n' +
                     '    ?painting ex:paintingMuseum ?pMuseum .\n' +
-                    '    ?museum ex:museumName ?museum_name .\n' +
+                    '    ?museum ex:museumName ?gallery_name .\n' +
                     '    filter(?pMuseum = ?museum) .\n';
                 if (qData['artistName'] != undefined) {
                     query += '    filter(regex(lcase(str(?artist_name)),"' + qData['artistName'] + '")) .\n';

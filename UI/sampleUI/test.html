@@ -166,7 +166,7 @@
                 res = JSON.parse(response);
                 header_created = false;
                 for(var i=0 ; i < res.length ; i++){
-                    var headers = ['Artist', 'artist_name', 'painting_title', 'painting_image', 'museum_name'];
+                    var headers = ['artist_name', 'painting_title', 'painting_image', 'gallery_name'];
                     if(! header_created){
                         mytable += '<tr>\n';
                         headers.forEach(function(k, index, array){
@@ -194,17 +194,13 @@
                                 res[i][kk]["value"]+'</a>';
                             mytable += '</td>\n';
                         }
-                        else if(kk == "Artist"){
-                            mytable += res[i]['Artist']["value"];
-                            mytable += '</td>\n';
-                        }
                         else if(kk == "painting_title"){
                             mytable += '<a href="#paintingPage" onclick="getPaintingInfo(\''+
                                 res[i]['painting']["value"]+'\')">'+
                                 res[i][kk]["value"]+'</a>';
                             mytable += '</td>\n';
                         }
-                        else if(kk == "museum_name"){
+                        else if(kk == "gallery_name"){
                             mytable += '<a href="#paintingPage" onclick="getMuseumInfo(\''+
                                 res[i]['museum']["value"]+'\')">'+
                                 res[i][kk]["value"]+'</a>';
