@@ -58,7 +58,9 @@ http.createServer(function (req, res) {
                     '    ?painting ex:paintingDate ?painting_year .\n' +
                     '    ?painting ex:paintingMedium ?painting_medium .\n' +
                     '    ?painting ex:paintingImage ?painting_image .\n' +
-                    '    ?museum ex:museumName ?museum_name .\n';
+                    '    ?painting ex:paintingMuseum ?pMuseum .\n' +
+                    '    ?museum ex:museumName ?museum_name .\n' +
+                    '    filter(?pMuseum = ?museum) .\n';
                 if (qData['artistName'] != undefined) {
                     query += '    filter(regex(lcase(str(?artist_name)),"' + qData['artistName'] + '")) .\n';
                 }
